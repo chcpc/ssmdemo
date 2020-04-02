@@ -1,5 +1,6 @@
 package com.chcpc.mvcdemobasic.controller;
 
+import com.chcpc.mvcdemobasic.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,16 +10,23 @@ import org.springframework.web.servlet.ModelAndView;
 public class DemoController {
     @RequestMapping("/index")
     public ModelAndView index(){
-        System.out.println("访问成功");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");//viewName
         return mv;
     }
     @RequestMapping("/redirect")
-    public ModelAndView redirect(){
-        System.out.println("访问成功");
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/controller/index");//viewName
-        return mv;
+    public String redirect(){
+        return "redirect:/controller/index";
+    }
+    @RequestMapping("/parameter")
+    public void parameter(String name, int age){
+        Student student = new Student();
+        student.setName(name);
+        student.setAge(age);
+        System.out.println(student);
+    }
+    @RequestMapping("/student")
+    public void student(Student student){
+        System.out.println(student);
     }
 }
