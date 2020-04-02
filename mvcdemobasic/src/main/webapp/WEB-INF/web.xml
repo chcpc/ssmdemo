@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>/WEB-INF/view/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 配置处理器映射 -->
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- 选择springmvc配置文件地址 -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:/spring/spring-mvc.xml</param-value>
+    </init-param>
+    <!-- 标记容器是否在启动的时候就加载这个servlet -->
+    <!-- 当值为0或者大于0时，表示容器在应用启动时就加载这个servlet -->
+    <load-on-startup>1</load-on-startup>
+    <!-- 为servlet或者filter设置启用异步支持 -->
+    <!-- 需要调整xml头部约束，由2.5变为3.0 -->
+    <async-supported>true</async-supported>
+  </servlet>
+  <!-- 配置映射捕获规则 -->
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>

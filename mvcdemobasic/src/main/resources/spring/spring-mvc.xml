@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置注解驱动，以使得访问路径与方法的匹配可以通过注解配置 -->
+    <!-- 如Jackson必须配置注解驱动，在SpringMVC框架中使用某些技术，底层要使用的类需要框架来帮我们自动创建HttpMessageConvert -->
+    <mvc:annotation-driven />
+
+    <!-- 组件自动扫描目标包，将包下的所有@Controller注解的类装配 -->
+    <context:component-scan base-package="com.chcpc.mvcdemobasic.controller" />
+
+    <!-- 指定视图映射规则，添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!--静态资源映射-->
+    <!--本项目把静态资源放在了webapp的statics目录下，资源映射如下-->
+    <mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/"/>
+    <mvc:resources mapping="/html/**" location="/WEB-INF/view/html/"/>
+</beans>
